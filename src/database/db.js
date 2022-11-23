@@ -1,14 +1,18 @@
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-const mongoClient = new MongoClient(process.env.MOGNO_URI);
+// Database
+const mongoClient = new MongoClient(process.env.MONGO_URI);
+const db = mongoClient.db(process.env.DB_NAME);
 
-try {
-    await mongoClient.connect();
-    console.log("mongoDB connectado");
-} catch (error) {
-    console.log(error);
-}
+// Database connection
+mongoClient.connect().then(() => {
+    db;
+    console.log("Database connected");
+}).catch((err) => {
+    console.log(err);
+});
 
-const db = mongoClient.db("yu-gi-oh");
+export default db;
