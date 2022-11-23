@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Database
-const mongoClient = new MongoClient("mongodb+srv://lfscruz:SybfUKUtHR4Umlww@yu-gi-oh-cluster.umwiwud.mongodb.net/?retryWrites=true&w=majorityretryWrites=true&w=majority");
+const mongoClient = new MongoClient(process.env.MONGO_URI);
 const db = mongoClient.db(process.env.DB_NAME);
 
 // Database connection

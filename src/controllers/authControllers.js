@@ -1,6 +1,6 @@
 import db from "../database/db.js"
 import bcrypt from 'bcrypt';
-import { v4 as uuid } from 'uuid';
+import { v4 as uuidV4 } from 'uuid';
 import alert from 'alert'
 
 // Import Schema
@@ -61,4 +61,11 @@ export async function singup(req, res) {
         alert("Erro no servidor");
         return
     }
+}
+
+export async function postLogin(req, res){
+    const {email, password} = req.body;
+    const token = uuidV4();
+
+    res.send({token, email, password});
 }
