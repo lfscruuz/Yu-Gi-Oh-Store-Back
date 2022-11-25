@@ -24,14 +24,6 @@
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
-  "name": "yu-gi-oh-store-back",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lfscruuz/Yu-Gi-Oh-Store-Back.git"
@@ -42,6 +34,5 @@
   "bugs": {
     "url": "https://github.com/lfscruuz/Yu-Gi-Oh-Store-Back/issues"
   },
-  "homepage": "https://github.com/lfscruuz/Yu-Gi-Oh-Store-Back#readme",
-  "description": ""
+  "homepage": "https://github.com/lfscruuz/Yu-Gi-Oh-Store-Back#readme"
 }
