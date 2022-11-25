@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
-// Import the singup function from authControllers.js
-import { singup } from '../controllers/authControllers.js';import { signup, postLogin} from '../controllers/authControllers.js';
+import { signup, postLogin} from '../controllers/authControllers.js';
 import {sessionMiddleware, loginMiddleware} from '../middlewares/userMiddlewares.js';
 
 const authRouter = Router();
