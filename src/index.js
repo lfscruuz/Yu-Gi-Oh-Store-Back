@@ -1,4 +1,4 @@
-import express, { json } from 'express';
+import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -9,7 +9,7 @@ dotenv.config();
 // Server
 const app = express();
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
 const PORT = 5000
 
