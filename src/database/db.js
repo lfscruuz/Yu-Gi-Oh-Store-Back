@@ -1,11 +1,12 @@
-import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+import { MongoClient } from 'mongodb';
 
 dotenv.config();
 
+
 // Database
-const mongoClient = new MongoClient("mongodb+srv://lfscruz:SybfUKUtHR4Umlww@yu-gi-oh-cluster.umwiwud.mongodb.net/?retryWrites=true&w=majorityretryWrites=true&w=majority");
-const db = mongoClient.db(process.env.DB_NAME);
+const mongoClient = new MongoClient( "mongodb+srv://driven:123@yu-gi-oh-cluster.umwiwud.mongodb.net/?retryWrites=true&w=majority" );
+const db = mongoClient.db(process.env.MONGO_DB);
 
 // Database connection
 mongoClient.connect().then(() => {
