@@ -1,13 +1,13 @@
-import db from "../database/db.js"
+import db from "../database/db.js";
+import bcrypt from 'bcrypt';
 
-async function userMiddlewares(req, res, next) {
+async function sessionMiddleware(req, res, next) {
   
   //Token
   const token = req.headers.authorization?.replace('Bearer ', '');
   if (!token) {
     return res.status(401).json({ message: 'Token não encontrado' });
   }
-
 
   try {
     const session = await db.collection("sessions").findOne({ token });
@@ -38,4 +38,24 @@ async function userMiddlewares(req, res, next) {
   }
 }
 
-export default userMiddlewares;
+async function loginMiddleware(req, res, next){
+  const {email, password} = req.body;
+
+  const user = await db.collection("users").findOne({email: email});
+  if (!user){
+    return res.status(401).send("usuário não cadastrado");
+  }
+  const comparePasswords = bcrypt.compare(password, user.password);
+  if (!comparePasswords){
+    return res.status(401).send("senha inválida");
+  }
+  
+  req.user = user;
+
+  next();
+}
+
+export {
+  sessionMiddleware,
+  loginMiddleware
+};
