@@ -5,8 +5,9 @@ dotenv.config();
 
 
 // Database
+
 const mongoClient = new MongoClient( "mongodb+srv://driven:123@yu-gi-oh-cluster.umwiwud.mongodb.net/?retryWrites=true&w=majority" );
-const db = mongoClient.db(process.env.MONGO_DB);
+const db = mongoClient.db("Yu-Gi-Oh-Cluster");
 
 // Database connection
 mongoClient.connect().then(() => {
