@@ -6,15 +6,17 @@ dotenv.config();
 
 // Database
 
-const mongoClient = new MongoClient( "mongodb+srv://driven:123@yu-gi-oh-cluster.umwiwud.mongodb.net/?retryWrites=true&w=majority" );
-const db = mongoClient.db("yu-gi-oh");
+const mongoClient = new MongoClient(process.env.MONGO_URI);
+
 
 // Database connection
-mongoClient.connect().then(() => {
-    db;
-    console.log("Database connected");
-}).catch((err) => {
-    console.log(err);
-});
+try {
+    await mongoClient.connect();
+    console.log("MongoDB Conectado")
+} catch (error) {
+    console.log(error);
+}
+
+const db = mongoClient.db("yu-gi-oh");
 
 export default db;
