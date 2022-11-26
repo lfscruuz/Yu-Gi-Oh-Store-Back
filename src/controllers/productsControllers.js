@@ -1,13 +1,21 @@
 import db from "../database/db.js";
 
-export const getProductController = async (req, res) => {
+export async function getProducts(req, res) {
     try{
-
-        const products = await db.find()
-        res.status(200).send(products)
-
+        const products = await db.collection("products").find().toArray();
+        res.send(products);
     }
-    catch(err){
-        console.log(err)
+    catch(error){
+        console.log(error, "Erro no productsControllers.js na função getProducts");
+    }
+}
+
+export async function getProduct(req, res) {
+    try{
+        const product = await db.collection("products").findOne({ _id: req.params.id });
+        res.send(product);
+    }
+    catch(error){
+        console.log(error, "Erro no productsControllers.js na parte do getProduct");
     }
 }

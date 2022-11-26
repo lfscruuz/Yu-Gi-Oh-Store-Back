@@ -1,44 +1,35 @@
 import { ObjectId } from "mongodb";
 import db from "../database/db.js";
 
-export async function validateProduct(req, res, next) {
-  const { _id } = req.params;
+export async function checkIfProductExists(req, res, next) {
+    const product = await db.collection("products").findOne({ _id: ObjectId(req.params.id) });
 
-    if (!ObjectId.isValid(_id)) {
-      return res.status(400).send({ error: "Invalid id" });
+    if (!product) {
+        res.status(404).send("Produto não encontrado");
+        return;
     }
 
-    try{
-        const product = await db.collection("products").findOne({ _id: ObjectId(_id) });
-
-        if (!product) {
-            return res.status(404).send({ error: "Product not found" });
-            }
-            
-        req.locals.product = product;
-        next();
-    } catch (error) {
-        return res.status(500).send({ error: "Internal server error" });
-    }
+    next();
 }
 
-export async function validateProductBody(req, res, next) {
-    const { categoryId } = req.body;
+export async function checkIfProductIsInCart(req, res, next) {
+    const product = await db.collection("products").findOne({ _id: ObjectId(req.params.id) });
 
-    if (!ObjectId.isValid(categoryId)) {
-        return res.status(400).send({ error: "Invalid id" });
+    if (!product.inCart) {
+        res.status(400).send("Produto não está no carrinho");
+        return;
     }
 
-    try{
-        const category = await db.collection("products").findOne({ category: ObjectId(category) });
+    next();
+}
 
-        if (!category) {
-            return res.status(404).send({ error: "Category not found" });
-        }
+export async function checkIfProductIsNotInCart(req, res, next) {
+    const product = await db.collection("products").findOne({ _id: ObjectId(req.params.id) });
 
-        res.locals.category = category;
-        next();
-    } catch (error) {
-        return res.status(500).send({ error: "Internal server error" });
+    if (product.inCart) {
+        res.status(400).send("Produto já está no carrinho");
+        return;
     }
+
+    next();
 }
