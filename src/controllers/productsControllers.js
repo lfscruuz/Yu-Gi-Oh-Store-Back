@@ -1,12 +1,13 @@
-import db from "../database/db.js"
+import db from "../database/db.js";
 
-export async function getProducts(req, res) {
-    const products = await db.collection("products").find().toArray();
-    res.send(products);
-}
+export const getProductController = async (req, res) => {
+    try{
 
-export async function getProductById(req, res) {
-    const { id } = req.params;
-    const product = await db.collection("products").findOne({ _id: ObjectId(id) });
-    res.send(product);
+        const products = await db.find()
+        res.status(200).send(products)
+
+    }
+    catch(err){
+        console.log(err)
+    }
 }

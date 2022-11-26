@@ -12,8 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRouter);
-app.use('/api/products', productsRouter);
+app.use('/auth', authRouter);
+app.use('/products', productsRouter);
 
 const PORT = 5000;
 
