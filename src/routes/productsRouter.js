@@ -1,8 +1,13 @@
 import { Router } from 'express';
-import { getProductController } from "../controllers/productsControllers.js"
 
-const productRouter = Router()
+import { getProducts, getProduct } from '../controllers/productsControllers.js';
+import { checkIfProductExists, checkIfProductIsInCart, checkIfProductIsNotInCart} from '../middlewares/productsMiddlewares.js';
 
-productRouter.get("/allProducts", getProductController)
+const productsRouter = Router();
 
-export default productRouter;
+productsRouter.get('/', getProducts);
+productsRouter.get('/:id', checkIfProductExists, getProduct);
+productsRouter.post('/:id/add', checkIfProductExists, checkIfProductIsNotInCart);
+productsRouter.post('/:id/remove', checkIfProductExists, checkIfProductIsInCart);
+
+export default productsRouter;
