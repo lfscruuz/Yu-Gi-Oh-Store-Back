@@ -26,9 +26,7 @@ async function sessionMiddleware(req, res, next) {
       return;
     }
 
-    res.locals.user = user;
-    res.locals.session = session;
-    res.locals.token = token;
+    req.session = session;
 
     next();
 
