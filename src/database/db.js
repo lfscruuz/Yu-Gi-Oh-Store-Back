@@ -17,6 +17,6 @@ try {
     console.log(error);
 }
 
-const db = mongoClient.db("yu-gi-oh");
+const db = mongoClient.db(process.env.DB_NAME);
 
 export default db;

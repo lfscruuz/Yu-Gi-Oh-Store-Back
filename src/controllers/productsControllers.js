@@ -13,9 +13,46 @@ export async function getProducts(req, res) {
 export async function getProduct(req, res) {
     try{
         const product = await db.collection("products").findOne({ _id: req.params.id });
-        res.send(product);
+        return res.status(201).send(product);
     }
     catch(error){
         console.log(error, "Erro no productsControllers.js na parte do getProduct");
     }
+}
+
+export async function addToCart(req, res){
+    const product = req.product;
+    const user = req.user;
+    const session = req.session;
+    const purchase = {
+        productId: product._id,
+        index: product.index,
+        category: product.category,
+        image: product.image,
+        name: product.name,
+        price: product.price
+    }
+    
+    try {
+        await db.collection("carts").insertOne(purchase)
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
+
+export async function removeFromCart(req, res){
+    const product = req.product;
+
+    try {
+        await db.collection("carts").deleteOne(product)
+        res.sendStatus(200)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
+
+export async function showCart(req, res){
+
+
 }
