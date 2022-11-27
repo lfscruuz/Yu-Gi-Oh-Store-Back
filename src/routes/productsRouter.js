@@ -8,8 +8,10 @@ const productsRouter = Router();
 
 productsRouter.get('/products/', getProducts);
 productsRouter.get('/products/:id', checkIfProductExists, getProduct);
+productsRouter.get("/products/cart", showCart);
+
 productsRouter.use(sessionMiddleware);
 productsRouter.post('/products/:id/', checkIfProductExists, checkIfProductIsNotInCart, addToCart);
 productsRouter.delete('/products/:id/', checkIfProductExists, checkIfProductIsInCart, removeFromCart);
-productsRouter.get("/products/cart", showCart)
+
 export default productsRouter;
