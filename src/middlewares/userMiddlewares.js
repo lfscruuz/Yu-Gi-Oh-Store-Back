@@ -19,14 +19,16 @@ async function sessionMiddleware(req, res, next) {
     }
 
     const user = await db.collection("users").findOne({ _id: session.userId });
-    
+
     if (!user) {
       res.sendStatus(401);
       console.log('Usuário não encontrado');
       return;
     }
 
-    req.session = session;
+    res.locals.user = user;
+    res.locals.session = session;
+    res.locals.token = token;
 
     next();
 

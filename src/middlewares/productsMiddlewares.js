@@ -9,7 +9,6 @@ export async function checkIfProductExists(req, res, next) {
         return;
     }
 
-    req.product = product;
     next();
 }
 

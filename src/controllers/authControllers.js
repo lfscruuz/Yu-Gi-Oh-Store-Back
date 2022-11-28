@@ -65,9 +65,9 @@ export async function signup(req, res) {
 }
 
 export async function postLogin(req, res) {
+
     //req vem do middleware
     const {name, _id} = req.user;
-
     const token = uuidV4();
     const session = {
         name: name,
@@ -75,7 +75,7 @@ export async function postLogin(req, res) {
         userId: _id
       }
     try {
-        await db.collection("sessions").insertOne(session);
+        await db.collection("sessions").insertOne(session)
         return res.send({ token, name });
     } catch (error) {
         return res.sendStatus(500);

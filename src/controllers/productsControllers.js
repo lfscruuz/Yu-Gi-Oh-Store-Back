@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import db from "../database/db.js";
 
 export async function getProducts(req, res) {
@@ -20,4 +19,3 @@ export async function getProduct(req, res) {
         console.log(error, "Erro no productsControllers.js na parte do getProduct");
     }
 }
-
