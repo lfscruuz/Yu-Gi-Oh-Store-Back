@@ -8,8 +8,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(authRouter);
-app.use(productsRouter);
+app.use("/auth", authRouter);
+app.use("/products", productsRouter);
 
 const port = process.env.PORT || 5000;
 // const port = 5000
