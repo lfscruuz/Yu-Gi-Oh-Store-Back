@@ -4,9 +4,10 @@ import bcrypt from 'bcrypt';
 async function sessionMiddleware(req, res, next) {
   
   //Token
-  const token = req.headers.authorization?.replace('Bearer ', '');
+  const { authorization } = req.headers;
+  const token = authorization?.replace("Bearer ", "");
   if (!token) {
-    return res.status(401).json({ message: 'Token não encontrado' });
+    return res.status(401).json({ message: "Token not found" });
   }
 
   try {
