@@ -1,8 +1,10 @@
 import {  Router } from 'express';
 
-import { getProducts, getProduct, addToCart, removeFromCart, showCart } from '../controllers/productsControllers.js';
-import { checkIfProductExists, checkIfProductIsInCart, checkIfProductIsNotInCart} from '../middlewares/productsMiddlewares.js';
-import { sessionMiddleware } from '../middlewares/userMiddlewares.js';
+// import { getProducts, getProduct, addToCart, removeFromCart, showCart } from '../controllers/productsControllers.js';
+// import { checkIfProductExists, checkIfProductIsInCart, checkIfProductIsNotInCart} from '../middlewares/productsMiddlewares.js';
+import { checkIfProductExists} from '../middlewares/productsMiddlewares.js';
+import {getProducts, getProduct} from "../controllers/productsControllers"
+// import { sessionMiddleware } from '../middlewares/userMiddlewares.js';
 
 const productsRouter = Router();
 
