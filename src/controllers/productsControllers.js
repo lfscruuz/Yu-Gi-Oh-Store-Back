@@ -14,7 +14,7 @@ export async function getProducts(req, res) {
 export async function getProduct(req, res) {
     try{
         const product = await db.collection("products").findOne({ _id: req.params.id });
-        return res.status(201).send(product);
+        res.send(product);
     }
     catch(error){
         console.log(error, "Erro no productsControllers.js na parte do getProduct");
