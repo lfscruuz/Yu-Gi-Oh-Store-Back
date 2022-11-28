@@ -5,9 +5,11 @@ dotenv.config();
 
 
 // Database
-
+/*
 const mongoClient = new MongoClient(process.env.MONGO_URI);
+*/
 
+const mongoClient = new MongoClient("mongodb+srv://lfscruz:SybfUKUtHR4Umlww@yu-gi-oh-cluster.umwiwud.mongodb.net/?retryWrites=true&w=majority")
 
 // Database connection
 try {

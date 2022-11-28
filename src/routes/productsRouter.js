@@ -6,7 +6,7 @@ import { sessionMiddleware } from '../middlewares/userMiddlewares.js';
 
 const productsRouter = Router();
 
-productsRouter.get('/products/', getProducts);
+productsRouter.get('/products', getProducts);
 productsRouter.get('/products/:id', checkIfProductExists, getProduct);
 productsRouter.use(sessionMiddleware);
 productsRouter.post('/products/:id/', checkIfProductExists, checkIfProductIsNotInCart, addToCart);

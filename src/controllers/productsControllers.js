@@ -6,7 +6,7 @@ export async function getProducts(req, res) {
         res.send(products);
     }
     catch(error){
-        console.log(error, "Erro no productsControllers.js na função getProducts");
+        console.log(error)
     }
 }
 
@@ -16,7 +16,7 @@ export async function getProduct(req, res) {
         return res.status(201).send(product);
     }
     catch(error){
-        console.log(error, "Erro no productsControllers.js na parte do getProduct");
+        console.log(error)
     }
 }
 
